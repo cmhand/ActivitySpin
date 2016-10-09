@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Toddler Activities</ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="help-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div *ngIf="!loading">
+		<div *ngIf="activities.length === 0">
+			<h3>Welcome!</h3>
+			<p>
+				Welcome to Activity Spin, start your fun by creating an activity below. 
+			</p>
+			<button ion-button 
+					block 
+					color="primary"
+					(click)="create()">Create Activity</button>
+			<p>Also, you'll need to stock your pantry to ensure you have the supplies necessary to have fun.</p>
+			<button ion-button
+					block
+					color="secondary"
+					(click)="pantry()">Manage Pantry</button>
+		</div>
+		<div *ngIf="activities.length > 0">
+			<ion-item *ngIf="currentActivity">
+				{{currentActivity}}
+				<button ion-button small item-right color="accent">
+					Discard
+				</button>
+				<button ion-button small item-right color="primary">
+					Complete
+				</button>
+			</ion-item>
+			<activities-spinner [activities]="toDo"></activities-spinner>
+			<ion-fab bottom right>
+				<button ion-fab color="primary" (click)="create()">
+					<ion-icon name="add"></ion-icon>
+				</button>
+			</ion-fab>
+		</div>
+	</div>
+</ion-content>

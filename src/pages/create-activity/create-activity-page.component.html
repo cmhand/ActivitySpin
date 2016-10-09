@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Create Activity</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-item>
+		<ion-label color="primary" stacked>Name</ion-label>
+    	<ion-input [(ngModel)]="name"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label stacked>
+			Age
+		</ion-label>
+		<ion-select [(ngModel)]="age">
+	      <ion-option value="0">< 1</ion-option>
+	      <ion-option value="1">1</ion-option>
+	      <ion-option value="2">2</ion-option>
+	      <ion-option value="5">Preschool</ion-option>
+	      <ion-option value="10">Gradeschool</ion-option>
+	    </ion-select>
+	</ion-item>
+	<div padding>
+	  <ion-segment [(ngModel)]="location">
+	    <ion-segment-button value="Indoor">
+	      Indoor
+	    </ion-segment-button>
+	    <ion-segment-button value="Outdoor">
+	      Outdoor
+	    </ion-segment-button>
+	  </ion-segment>
+	</div>
+	<ion-item>
+		<ion-label floating>Instructions</ion-label>
+   		<ion-textarea [(ngModel)]="instructions"></ion-textarea>
+	</ion-item>
+	<ion-item (click)="selectSupplies()">
+		<span *ngIf="supplies.length === 0">
+			Select Supplies
+		</span>
+		<span *ngIf="supplies.length > 0">
+			{{supplies.length}} Selected
+		</span>
+	</ion-item>
+	<ion-item>
+		<ion-label>Parental Supervision</ion-label>
+	    <ion-toggle [(ngModel)]="supervision"></ion-toggle>
+	</ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button color="primary" (click)="create()">
+        Create
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

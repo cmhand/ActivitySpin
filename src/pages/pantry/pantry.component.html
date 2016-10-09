@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pantry</ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="help-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-item>
+		<ion-input placeholder="Add new item" [(ngModel)]="newItem">
+		</ion-input>
+	</ion-item>
+	<div padding>
+		<button ion-button (click)="add()">
+			Add Item
+		</button>
+	</div>
+	<ion-list>
+	<ion-item *ngFor="let item of pantry">
+		<span (click)="toggle(item)">
+		<ion-icon item-left name="checkmark" [style.visibility]="item.stocked ? 'visible' : 'hidden'">
+		</ion-icon>
+		{{item.name}}
+		</span>
+		<ion-icon item-right name="trash" (click)="delete(item)">
+		</ion-icon>
+	</ion-item>
+	</ion-list>
+</ion-content>

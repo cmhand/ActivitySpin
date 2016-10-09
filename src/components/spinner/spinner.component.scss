@@ -1,0 +1,47 @@
+activities-spinner {
+
+	.spinner-container {
+		position:relative; 
+		min-height: 210px;
+	}
+
+	#canvas {
+		position: absolute; 
+		right: 0; 
+		left: 0; 
+		top: 0; 
+		bottom: 0; 
+		left: 50%; 
+		margin-left: -105px;
+	}
+
+	.spinner-btn {
+		position: absolute; 
+		top: 50%; 
+		left: 50%; 
+		height: 80px; 
+		width: 80px; 
+		background-color: #000; 
+		margin-left: -40px; 
+		margin-top: -40px; 
+		border-radius: 50%;
+		box-shadow: 0px 0px 5px 1px #333;
+	}
+
+	.chevron {
+		position: absolute;
+	    top: -5px;
+	    right: 50%;
+	    left: 50%;
+	    height: 20px;
+	    width: 20px;
+	    margin-left: -10px;
+	    background-color: #0ff;
+	    border-right: 10px solid #000;
+	    border-top: 10px solid #000;
+	    border-bottom: 10px solid #000;
+	    border-left: 10px solid #000;
+	    transform: rotate(-45deg);
+	}
+
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Select Supplies</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-item>
+		<ion-input placeholder="Add new item" [(ngModel)]="newItem">
+		</ion-input>
+		<button ion-button small item-right (click)="add()">
+			Add
+		</button>
+	</ion-item>
+	<ion-list>
+	<ion-item *ngFor="let item of stocked" (click)="toggle(item)">
+		{{item}}
+		<ion-icon item-right name="checkmark" *ngIf="selected.indexOf(item) > -1">
+		</ion-icon>
+	</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="transparent">
+    <ion-buttons start>
+      <button ion-button color="primary" (click)="ok()">
+        OK
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="cancel()">
+        CANCEL
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
