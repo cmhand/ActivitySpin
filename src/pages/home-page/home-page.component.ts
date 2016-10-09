@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { Storage } from "@ionic/storage";
 
@@ -11,7 +11,7 @@ import { PantryPage } from "../pantry/pantry.component";
 	selector: "home-page",
 	templateUrl: "./home-page.component.html"
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
 	public activities = [];
 	public currentActivity: Activity;
@@ -26,6 +26,7 @@ export class HomePage implements OnInit {
 
 	ionViewDidEnter() {
 		this.kickoff();
+		console.log("hit");
 	}
 
 	create() {

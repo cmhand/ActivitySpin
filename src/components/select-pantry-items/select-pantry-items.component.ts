@@ -39,7 +39,7 @@ export class SelectPantryItemsComponent implements OnInit {
 			name: this.newItem,
 			stocked: true
 		};
-		this.stocked.push(item);
+		this.stocked.push(item.name);
 		this.fullPantry.push(item);
 		this.storage.set(DB.pantry, this.fullPantry);
 	}
