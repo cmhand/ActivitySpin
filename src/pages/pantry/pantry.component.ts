@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from "ionic-angular";
 import { Storage } from "@ionic/storage";
 
-import { DB } from "../../constants/DB";
+import { DB } from "../../constants/db";
 import { Supply } from "../../model/supply.interface";
 
 @Component({

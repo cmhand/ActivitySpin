@@ -6,7 +6,9 @@ import { Storage } from "@ionic/storage";
 import { HomePage } from "../pages/home-page/home-page.component";
 import { CreateActivityPage } from "../pages/create-activity/create-activity-page.component";
 import { PantryPage } from "../pages/pantry/pantry.component";
+import { ActivitiesPage } from "../pages/activities/activities.component";
 
+import { ViewActivityComponent } from "../components/view-activity/view-activity.component";
 import { SelectPantryItemsComponent } from "../components/select-pantry-items/select-pantry-items.component";
 import { SpinnerComponent } from "../components/spinner/spinner.component";
 
@@ -16,8 +18,10 @@ import { SpinnerComponent } from "../components/spinner/spinner.component";
     HomePage,
     CreateActivityPage,
     PantryPage,
+    ActivitiesPage,
     SelectPantryItemsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ViewActivityComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -28,7 +32,9 @@ import { SpinnerComponent } from "../components/spinner/spinner.component";
     HomePage,
     CreateActivityPage,
     PantryPage,
-    SelectPantryItemsComponent
+    ActivitiesPage,
+    SelectPantryItemsComponent,
+    ViewActivityComponent
   ],
   providers: [Storage]
 })

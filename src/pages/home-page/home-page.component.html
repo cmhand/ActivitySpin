@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Toddler Activities</ion-title>
+    <ion-title>Activity Spin</ion-title>
     <ion-buttons end>
       <button ion-button>
         <ion-icon name="help-circle"></ion-icon>
@@ -27,22 +27,39 @@
 			<button ion-button
 					block
 					color="secondary"
-					(click)="pantry()">Manage Pantry</button>
+					(click)="viewPantry()">Manage Pantry</button>
 		</div>
 		<div *ngIf="activities.length > 0">
-			<ion-item *ngIf="currentActivity">
-				{{currentActivity}}
-				<button ion-button small item-right color="accent">
-					Discard
-				</button>
-				<button ion-button small item-right color="primary">
-					Complete
-				</button>
-			</ion-item>
-			<activities-spinner [activities]="toDo"></activities-spinner>
+			<section *ngIf="currentActivity" class="current-activity">
+				<h3>
+					Current Activity
+				</h3>
+				<ion-item>
+					{{currentActivity.name}}
+
+					<button ion-button small item-right color="primary" (click)="viewActivity()">
+						<ion-icon name="eye"></ion-icon>
+					</button>
+					<button ion-button small item-right color="danger" (click)="discard()">
+						<ion-icon name="close"></ion-icon>
+					</button>
+					<button ion-button small item-right color="secondary" (click)="completeActivity()">
+						<ion-icon name="checkmark"></ion-icon>
+					</button>
+				</ion-item>
+			</section>
+			<div *ngIf="currentActivity == null">
+				<activities-spinner [activities]="toDo"
+									(activitySelected)="activitySelected($event)"></activities-spinner>
+			</div>
 			<ion-fab bottom right>
-				<button ion-fab color="primary" (click)="create()">
+				<button ion-fab color="secondary" (click)="create()">
 					<ion-icon name="add"></ion-icon>
+				</button>
+			</ion-fab>
+			<ion-fab bottom left>
+				<button ion-fab color="primary" (click)="viewPantry()">
+					<ion-icon name="clipboard"></ion-icon>
 				</button>
 			</ion-fab>
 		</div>

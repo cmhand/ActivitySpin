@@ -3,13 +3,16 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Create Activity</ion-title>
+    <ion-title>{{ this.editActivity ? "Edit" : "Create" }} Activity</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
 	<ion-item>
 		<ion-label color="primary" stacked>Name</ion-label>
     	<ion-input [(ngModel)]="name"></ion-input>
+	</ion-item>
+	<ion-item color="danger" *ngIf="!valid">
+		There is already an activity with this name.
 	</ion-item>
 	<ion-item>
 		<ion-label stacked>
@@ -53,8 +56,15 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button color="primary" (click)="create()">
+      <button ion-button 
+      		*ngIf="!editActivity"
+      		color="primary" 
+      		(click)="create()">
         Create
+      </button>
+      <button *ngIf="editActivity"
+      		ion-button color="primary" (click)="save()">
+      	Save
       </button>
     </ion-buttons>
   </ion-toolbar>

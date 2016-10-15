@@ -3,8 +3,8 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { HomePage } from "../pages/home-page/home-page.component";
-import { CreateActivityPage } from "../pages/create-activity/create-activity-page.component";
-
+import { ActivitiesPage } from "../pages/activities/activities.component";
+import { PantryPage } from "../pages/pantry/pantry.component";
 
 @Component({
     templateUrl: 'app.html'
@@ -23,7 +23,8 @@ export class MyApp {
         // set our app's pages
         this.pages = [
             {title: 'Home', component: HomePage},
-            {title: 'Create Activity', component: CreateActivityPage}
+            {title: 'Activities', component: ActivitiesPage},
+            {title: "Pantry", component: PantryPage}
         ];
     }
 

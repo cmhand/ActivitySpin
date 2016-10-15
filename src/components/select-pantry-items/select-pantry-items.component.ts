@@ -25,12 +25,17 @@ export class SelectPantryItemsComponent implements OnInit {
 	ngOnInit() {
 		this.selected = this.params.get("selectedItems");
 		this.storage.get(DB.pantry).then((pantry: Array<Supply>) => {
-			this.fullPantry = pantry;
-			this.stocked = pantry.filter((item: Supply) => {
-				return item.stocked;
-			}).map((item: Supply) => {
-				return item.name;
-			});
+			if(pantry && pantry.length > 0) {
+				this.fullPantry = pantry;
+				this.stocked = pantry.filter((item: Supply) => {
+					return item.stocked;
+				}).map((item: Supply) => {
+					return item.name;
+				});
+			} else {
+				this.fullPantry = [];
+				this.stocked = [];
+			}
 		})
 	}
 

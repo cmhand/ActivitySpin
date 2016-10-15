@@ -1,0 +1,17 @@
+@import "../../theme/variables";
+
+view-activity {
+	.new {
+		font-size: 1.2em;
+		color: map-get($colors, primary);
+	}
+
+	.header {
+		font-size: 1em;
+		background-color: #efefef;
+		border: 1px solid #dfdfdf;
+		border-right: none;
+		border-left: none;
+		text-transform: uppercase;
+	}
+}

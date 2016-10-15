@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{activity.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<div *ngIf="isNew" class="new" padding>
+		Nice! Here's your activity.
+	</div>
+	<div class="header" padding>
+		Supplies
+	</div>
+	<div class="item" padding *ngFor="let item of activity.supplies">
+		{{item}}
+	</div>
+	<div class="header" padding>
+		Instructions
+	</div>
+	<div padding>
+		{{activity.instructions}}
+	</div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="transparent">
+    <ion-buttons start>
+      <button ion-button color="primary" (click)="complete()">
+        COMPLETE
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="dismiss()">
+        DISCARD
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
