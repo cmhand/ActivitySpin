@@ -23,7 +23,7 @@
 		</button>
 	</div>
 	<ion-list>
-	<ion-item *ngFor="let item of pantry">
+	<ion-item *ngFor="let item of pantry" [hidden]="newItem !== '' && item.name.indexOf(newItem) == -1">
 		<span (click)="toggle(item)">
 		<ion-icon item-left name="checkmark" [style.visibility]="item.stocked ? 'visible' : 'hidden'">
 		</ion-icon>

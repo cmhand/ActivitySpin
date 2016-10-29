@@ -11,7 +11,7 @@ import { Supply } from "../../model/supply.interface";
 })
 export class PantryPage implements OnInit {
     public pantry: Supply[] = [];
-    public newItem: string;
+    public newItem: string = "";
 
     private saving: boolean = false;
 
@@ -36,7 +36,7 @@ export class PantryPage implements OnInit {
     }
 
     public add() {
-        if (!this.newItem) {
+        if (!this.newItem || this.newItem.trim() === "") {
             return;
         }
         this.pantry.push({

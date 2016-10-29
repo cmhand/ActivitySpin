@@ -12,6 +12,7 @@ import { Activity } from "../../model/activity.interface";
 })
 export class ActivitiesPage {
 	public activities: Array<Activity>;
+	private currentActivity: Activity;
 	constructor(
 		private storage: Storage,
 		private navCtrl: NavController,
@@ -29,17 +30,28 @@ export class ActivitiesPage {
 	}
 
 	delete(index: number) {
+		let name = this.activities[index].name;
+		let title = "Delete Activity";
+		let message = "Do you want to delete this activity? This action cannot be reversed.";
+		let current = false;
+		if(this.currentActivity && name === this.currentActivity.name) {
+			current = true;
+			title = "Delete Current Activity";
+			message = "This is your current activity. If you delete it your current activity will be lost.";
+		}
 		let alert = this.alertCtrl.create({
-			title: 'Delete Activity',
-		    message: 'Do you want to delete this activity? This action cannot be reversed.',
+			title: title,
+		    message: message,
 		    buttons: [
 		      {
-		        text: 'No',
+		        text: 'Cancel',
 		        role: 'cancel'
 		      },
 		      {
-		        text: 'Yes',
-		        handler: this.deleteAndSave
+		        text: 'Ok',
+		        handler: () => { 
+		        	this.deleteAndSave(index, current); 
+		        }
 		      }
 		    ]
 		});
@@ -51,10 +63,19 @@ export class ActivitiesPage {
 			.then((activities: Array<Activity>) => {
 				this.activities = activities;
 			});
+		this.storage.get(DB.currentActivity)
+			.then((activity: Activity) => {
+				if(activity) {
+					this.currentActivity = activity;
+				}
+			});
 	}
 
-	private deleteAndSave = (i: number) => {
+	private deleteAndSave = (i: number, current: boolean) => {
 		this.activities.splice(i, 1);
+		if(current) {
+			this.storage.set(DB.currentActivity, null);
+		}
 		this.storage.set(DB.activities, this.activities);
 	};
 }

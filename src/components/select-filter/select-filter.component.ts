@@ -30,6 +30,6 @@ export class SelectFilterComponent implements OnInit {
 	}
 
 	cancel() {
-
+		this.viewCtrl.dismiss();
 	}
 }

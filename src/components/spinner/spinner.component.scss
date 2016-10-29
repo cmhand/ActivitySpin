@@ -6,24 +6,24 @@ activities-spinner {
 	.chevron {
 		width: 0;
 		height: 0;
-		border: 10px solid transparent;
-		border-bottom: 10px solid black;
+		border: 8px solid transparent;
+		border-bottom: 8px solid black;
 		position: absolute;
 		top: -5px;
 		left: 50%;
-		margin-left: -10px;
+		margin-left: -8px;
 		z-index: 1;
 	}
 	.chevron:after {
 		content: '';
 		position: absolute;
 		left: 50%; 
-		margin-left: -10px;
-		top: 10px;
+		margin-left: -8px;
+		top: 8px;
 		width: 0;
 		height: 0;
-		border: 10px solid transparent;
-		border-top: 20px solid black;
+		border: 8px solid transparent;
+		border-top: 16px solid black;
 	}
 
 	.circle {
@@ -33,15 +33,13 @@ activities-spinner {
 		width: 16em; height: 16em;
 		border-radius: 50%;
 		box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.5);
-		background: linear-gradient(36deg, #272b66 42.34%, transparent 42.34%),
-			linear-gradient(72deg, #2d559f 75.48%, transparent 75.48%),
-			linear-gradient(-36deg, #9ac147 42.34%, transparent 42.34%) 100% 0,
-			linear-gradient(-72deg, #639b47 75.48%, transparent 75.48%) 100% 0, 
-			linear-gradient(36deg, transparent 57.66%, #e1e23b 57.66%) 100% 100%,
-			linear-gradient(72deg, transparent 24.52%, #f7941e 24.52%) 100% 100%,
-			linear-gradient(-36deg, transparent 57.66%, #662a6c 57.66%) 0 100%,
-			linear-gradient(-72deg, transparent 24.52%, #9a1d34 24.52%) 0 100%, 
-			#43a1cd linear-gradient(#ba3e2e, #ba3e2e) 50% 100%;
+		background: linear-gradient(45deg, darken(#005aff, 10%) 50%, transparent 42.34%),
+			linear-gradient(-45deg, #5ef500, 50%, transparent 42.34%) 100% 0,
+			linear-gradient(-45deg, #00b31a 100.48%, transparent 75.48%) 100% 0, 
+			linear-gradient(45deg, transparent 50%, #ffbd02 37.66%) 100% 100%,
+			linear-gradient(-45deg, transparent 50%, #662a6c 37.66%) 0 100%,
+			linear-gradient(-45deg, transparent 0%, darken(#ff00d9, 10%) 0%) 0 100%, 
+			#00ffe5 linear-gradient(#ff001a, #ff001a) 100% 100%;
 		background-repeat: no-repeat;
 		background-size: 50% 50%;
 		transition: 1.5s ease-out;

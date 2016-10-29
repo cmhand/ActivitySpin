@@ -47,7 +47,11 @@ export class HomePage {
 
 	activitySelected(activityIndex: number) {
 		this.currentActivity = this.toDo[activityIndex];
-		this.toDo.splice(activityIndex, 1);
+		if(this.toDo.length > 1) {
+			this.toDo.splice(activityIndex, 1);
+		} else {
+			this.toDo = [];
+		}
 		this.storage.set(DB.currentActivity, this.currentActivity);
 		this.viewActivity(true);
 	}
@@ -195,7 +199,7 @@ export class HomePage {
 				}
 				if(supplied) {
 					if(this.filters) {
-						if(this.filters.ages) {
+						if(this.filters.ages && this.filters.ages.length > 0) {
 							let rightAge = false;
 							for(let k = 0; k < activity.ages.length; k++) {
 								let age: string = activity.ages[k];

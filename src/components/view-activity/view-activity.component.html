@@ -26,11 +26,14 @@
       <button ion-button color="primary" (click)="complete()">
         COMPLETE
       </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button ion-button color="primary" (click)="dismiss()">
+       <button ion-button color="primary" (click)="dismiss(true)">
         DISCARD
       </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="dismiss(false)">
+      	CLOSE
+  		</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
