@@ -14,7 +14,7 @@ export class CreateActivityPage implements OnInit {
     public name: string;
     public instructions: string;
     public supplies: string[] = [];
-    public age: string;
+    public age: string[];
     public location: string;
     public supervision: boolean;
     public editActivity: Activity;
@@ -34,7 +34,7 @@ export class CreateActivityPage implements OnInit {
         if(activity) {
             this.editActivity = activity;
             this.name = this.editActivity.name;
-            this.age = this.editActivity.age;
+            this.age = this.editActivity.ages;
             this.instructions = this.editActivity.instructions;
             this.location = this.editActivity.location;
             this.supervision = this.editActivity.supervision;
@@ -74,7 +74,7 @@ export class CreateActivityPage implements OnInit {
             this.activities[this.activityIndex] = {
                 name: this.name,
                 instructions: this.instructions,
-                age: this.age,
+                ages: this.age,
                 supervision: this.supervision,
                 location: this.location,
                 supplies: this.supplies
@@ -88,7 +88,7 @@ export class CreateActivityPage implements OnInit {
             this.activities.push({
                 name: this.name,
                 instructions: this.instructions,
-                age: this.age,
+                ages: this.age,
                 supervision: this.supervision,
                 location: this.location,
                 supplies: this.supplies

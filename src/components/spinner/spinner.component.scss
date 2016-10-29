@@ -3,6 +3,29 @@ activities-spinner {
 	  position: relative;
 	  min-height: 16em;
 	}
+	.chevron {
+		width: 0;
+		height: 0;
+		border: 10px solid transparent;
+		border-bottom: 10px solid black;
+		position: absolute;
+		top: -5px;
+		left: 50%;
+		margin-left: -10px;
+		z-index: 1;
+	}
+	.chevron:after {
+		content: '';
+		position: absolute;
+		left: 50%; 
+		margin-left: -10px;
+		top: 10px;
+		width: 0;
+		height: 0;
+		border: 10px solid transparent;
+		border-top: 20px solid black;
+	}
+
 	.circle {
 		position: relative;
 		margin: 1em auto;
@@ -34,7 +57,7 @@ activities-spinner {
 		text-transform: uppercase;
 		border-radius: 3px;
 		text-align: center;
-		margin: 2em auto;
+		margin: 1.5em auto;
 		box-shadow: 0px 9px 0px rgba(185,0,0,1), 0px 9px 25px rgba(0,0,0,.7);
 	}
 

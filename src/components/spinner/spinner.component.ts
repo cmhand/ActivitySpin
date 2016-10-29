@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { Activity } from "../../model/activity.interface";
-
 @Component({
 	selector: 'activities-spinner',
 	templateUrl: 'spinner.component.html'

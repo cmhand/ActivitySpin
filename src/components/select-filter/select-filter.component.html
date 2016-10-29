@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Select Filters</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-item>
+		<ion-label>Set Ages</ion-label>
+		<ion-toggle [(ngModel)]="setAges"></ion-toggle>
+	</ion-item>
+	<ion-item [hidden]="!setAges">
+		<ion-label stacked>
+			Ages
+		</ion-label>
+		<ion-select multiple="true" [(ngModel)]="age">
+	      <ion-option value="0">< 1</ion-option>
+	      <ion-option value="1">1</ion-option>
+	      <ion-option value="2">2</ion-option>
+	      <ion-option value="5">Preschool</ion-option>
+	      <ion-option value="10">Gradeschool</ion-option>
+	    </ion-select>
+	</ion-item>
+	<ion-item>
+		<ion-label>Set Location</ion-label>
+		<ion-toggle [(ngModel)]="setLocation"></ion-toggle>
+	</ion-item>
+	<div padding [hidden]="!setLocation">
+	  <ion-segment [(ngModel)]="location">
+	    <ion-segment-button value="Indoor">
+	      Indoor
+	    </ion-segment-button>
+	    <ion-segment-button value="Outdoor">
+	      Outdoor
+	    </ion-segment-button>
+	  </ion-segment>
+	</div>
+	<ion-item>
+		<ion-label>Set Supervision</ion-label>
+		<ion-toggle [(ngModel)]="setSupervision"></ion-toggle>
+	</ion-item>
+	<ion-item [hidden]="!setSupervision">
+		<ion-label>Supervision</ion-label>
+	    <ion-toggle [(ngModel)]="supervision"></ion-toggle>
+	</ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="transparent">
+    <ion-buttons start>
+      <button ion-button color="primary" (click)="ok()">
+        OK
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="cancel()">
+        CANCEL
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

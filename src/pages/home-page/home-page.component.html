@@ -36,19 +36,23 @@
 				</h3>
 				<ion-item>
 					{{currentActivity.name}}
-
-					<button ion-button small item-right color="primary" (click)="viewActivity()">
-						<ion-icon name="eye"></ion-icon>
-					</button>
-					<button ion-button small item-right color="danger" (click)="discard()">
-						<ion-icon name="close"></ion-icon>
-					</button>
-					<button ion-button small item-right color="secondary" (click)="completeActivity()">
-						<ion-icon name="checkmark"></ion-icon>
-					</button>
 				</ion-item>
+				<button ion-button icon-left block color="secondary" (click)="completeActivity()">
+					<ion-icon name="checkmark"></ion-icon> Complete
+				</button>
+				<button ion-button icon-left block color="danger" (click)="discard()">
+					<ion-icon name="close"></ion-icon> Discard
+				</button>
+				<button ion-button icon-left block color="primary" (click)="viewActivity()">
+					<ion-icon name="eye"></ion-icon> View
+				</button>
 			</section>
 			<div *ngIf="currentActivity == null">
+				<ion-fab top right (click)="selectFilters()">
+					<button ion-fab mini>
+						<ion-icon name="funnel" class="smaller"></ion-icon>
+					</button>
+				</ion-fab>
 				<activities-spinner [activities]="toDo"
 									(activitySelected)="activitySelected($event)"></activities-spinner>
 			</div>

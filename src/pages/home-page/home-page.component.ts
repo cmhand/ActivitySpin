@@ -3,11 +3,13 @@ import { NavController, ModalController, AlertController } from "ionic-angular";
 import { Storage } from "@ionic/storage";
 
 import { DB } from "../../constants/db";
+import { Filters } from "../../model/filters.interface";
 import { Activity } from "../../model/activity.interface";
 import { CreateActivityPage } from "../create-activity/create-activity-page.component";
 import { PantryPage } from "../pantry/pantry.component";
 import { Supply } from "../../model/supply.interface";
 import { ViewActivityComponent } from "../../components/view-activity/view-activity.component";
+import { SelectFilterComponent } from "../../components/select-filter/select-filter.component";
 
 @Component({
 	selector: "home-page",
@@ -21,7 +23,9 @@ export class HomePage {
 	public toDo: Array<Activity> = [];
 	public loading: boolean = true;
 
+	public filters: Filters;
 	private pantry: Array<Supply>;
+	private currentSupplies: Array<Supply>;
 	constructor(
 		public navCtrl: NavController,
 		public storage: Storage,
@@ -43,21 +47,31 @@ export class HomePage {
 
 	activitySelected(activityIndex: number) {
 		this.currentActivity = this.toDo[activityIndex];
-		this.completedActivities.push(this.currentActivity);
 		this.toDo.splice(activityIndex, 1);
-		this.storage.set(DB.completedActivities, this.completedActivities);
 		this.storage.set(DB.currentActivity, this.currentActivity);
 		this.viewActivity(true);
 	}
 
 	completeActivity() {
-		this.currentActivity = null;
-		this.storage.set(DB.currentActivity, null);
+		this.completedActivities.push(this.currentActivity);
+		this.clearCurrentActivity();
 		if(this.completedActivities.length == this.activities.length) {
 			this.completedActivities = [];
 			this.toDo = this.activities;
 		}
 		this.storage.set(DB.completedActivities, this.completedActivities);
+	}
+
+	selectFilters() {
+		let modal = this.modalCtrl.create(SelectFilterComponent);
+		modal.onDidDismiss(data => {
+			if(data) {
+				this.filters = data;
+				this.storage.set(DB.filters, data);
+				this.filter();
+			}
+		});
+		modal.present();
 	}
 
 	discard() {
@@ -98,10 +112,13 @@ export class HomePage {
 	}
 
 	private discardCurrentActivity = () => {
-		let index = this.completedActivities.indexOf(this.currentActivity);
-		let removedItem = this.completedActivities.splice(index, 1);
-		this.toDo.push(removedItem[0]);
-		this.completeActivity();
+		this.toDo.push(this.currentActivity);
+		this.clearCurrentActivity();
+	};
+
+	private clearCurrentActivity = () => {
+		this.currentActivity = null;
+		this.storage.set(DB.currentActivity, null);
 	};
 
 	private kickoff() {
@@ -131,15 +148,26 @@ export class HomePage {
 				this.pantry = [];
 			}
 		});
-		Promise.all([p1, p2, p3, p4]).then(() => {
+		let p5 = this.storage.get(DB.filters).then((filters: Filters) => {
+			if(filters) {
+				this.filters = filters;
+			}
+		});
+		Promise.all([p1, p2, p3, p4, p5]).then(() => {
 			if(this.activities.length > 0 && this.activities.length === this.completedActivities.length) {
 				// ToDo, reset activities.
 				return;
 			}
-			let currentSupplies = this.pantry.filter((item: Supply) => {
+			this.currentSupplies = this.pantry.filter((item: Supply) => {
 				return item.stocked;
 			});
-			this.toDo = this.activities.filter((activity: Activity) => {
+			this.toDo = this.filter();
+			this.loading = false;
+		});
+	}
+
+	private filter = () => {
+		return this.activities.filter((activity: Activity) => {
 				let complete: boolean = false;
 				this.completedActivities.forEach((doneActivity: Activity) => {
 					if(doneActivity.name === activity.name) {
@@ -153,8 +181,8 @@ export class HomePage {
 				for(let i = 0; i < activity.supplies.length; i++) {
 					let item = activity.supplies[i];
 					let found: boolean = false;
-					for(let j = 0; j < currentSupplies.length; j++) {
-						let supply = currentSupplies[j];
+					for(let j = 0; j < this.currentSupplies.length; j++) {
+						let supply = this.currentSupplies[j];
 						if(item === supply.name) {
 							found = true;
 							break;
@@ -165,9 +193,34 @@ export class HomePage {
 						break;
 					}
 				}
+				if(supplied) {
+					if(this.filters) {
+						if(this.filters.ages) {
+							let rightAge = false;
+							for(let k = 0; k < activity.ages.length; k++) {
+								let age: string = activity.ages[k];
+								if(this.filters.ages.indexOf(age) > -1) {
+									rightAge = true;
+									break;
+								}
+							}
+							if(!rightAge) {
+								return false;
+							}
+						}
+						if(this.filters.location && this.filters.location != "") {
+							if(activity.location != this.filters.location) {
+								return false;
+							}
+						}
+						if(this.filters.supervision != null) {
+							if(activity.supervision != this.filters.supervision) {
+								return false;
+							}
+						}
+					}
+				}
 				return supplied;
 			});
-			this.loading = false;
-		});
-	}
+	};
 }

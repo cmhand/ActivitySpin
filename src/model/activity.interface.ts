@@ -2,7 +2,7 @@ export interface Activity {
     name: string;
     instructions: string;
     location: string;
-    age: string;
+    ages: string[];
     supervision: boolean;
     supplies: string[];
 }

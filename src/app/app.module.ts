@@ -11,6 +11,7 @@ import { ActivitiesPage } from "../pages/activities/activities.component";
 import { ViewActivityComponent } from "../components/view-activity/view-activity.component";
 import { SelectPantryItemsComponent } from "../components/select-pantry-items/select-pantry-items.component";
 import { SpinnerComponent } from "../components/spinner/spinner.component";
+import { SelectFilterComponent } from "../components/select-filter/select-filter.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SpinnerComponent } from "../components/spinner/spinner.component";
     ActivitiesPage,
     SelectPantryItemsComponent,
     SpinnerComponent,
-    ViewActivityComponent
+    ViewActivityComponent,
+    SelectFilterComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -34,7 +36,8 @@ import { SpinnerComponent } from "../components/spinner/spinner.component";
     PantryPage,
     ActivitiesPage,
     SelectPantryItemsComponent,
-    ViewActivityComponent
+    ViewActivityComponent,
+    SelectFilterComponent
   ],
   providers: [Storage]
 })
