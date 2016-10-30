@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NavController, ModalController, AlertController } from "ionic-angular";
 import { Storage } from "@ionic/storage";
 
@@ -10,12 +10,13 @@ import { PantryPage } from "../pantry/pantry.component";
 import { Supply } from "../../model/supply.interface";
 import { ViewActivityComponent } from "../../components/view-activity/view-activity.component";
 import { SelectFilterComponent } from "../../components/select-filter/select-filter.component";
+import { SeedService } from "../../services/seed.service";
 
 @Component({
 	selector: "home-page",
 	templateUrl: "./home-page.component.html"
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
 	public activities = [];
 	public currentActivity: Activity = null;
@@ -26,15 +27,30 @@ export class HomePage {
 	public filters: Filters;
 	private pantry: Array<Supply>;
 	private currentSupplies: Array<Supply>;
+	private firstPromise: Promise<any>;
 	constructor(
 		public navCtrl: NavController,
 		public storage: Storage,
 		public modalCtrl: ModalController,
-		private alertCtrl: AlertController
+		private alertCtrl: AlertController,
+		private seedSvc: SeedService
 	) {}
 
+	ngOnInit() {
+		this.firstPromise = this.storage.get(DB.loaded);
+	}
+
 	ionViewDidEnter() {
-		this.kickoff();
+		this.firstPromise.then((loaded) => {
+			if(loaded) {
+				this.kickoff();
+			} else {
+				this.seedSvc.seed().then(() => {
+					this.storage.set(DB.loaded, true);
+					this.kickoff();
+				});
+			}
+		});
 	}
 
 	create() {

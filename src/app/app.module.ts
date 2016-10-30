@@ -8,6 +8,8 @@ import { CreateActivityPage } from "../pages/create-activity/create-activity-pag
 import { PantryPage } from "../pages/pantry/pantry.component";
 import { ActivitiesPage } from "../pages/activities/activities.component";
 
+import { SeedService } from "../services/seed.service";
+
 import { ViewActivityComponent } from "../components/view-activity/view-activity.component";
 import { SelectPantryItemsComponent } from "../components/select-pantry-items/select-pantry-items.component";
 import { SpinnerComponent } from "../components/spinner/spinner.component";
@@ -39,6 +41,6 @@ import { SelectFilterComponent } from "../components/select-filter/select-filter
     ViewActivityComponent,
     SelectFilterComponent
   ],
-  providers: [Storage]
+  providers: [Storage, SeedService]
 })
 export class AppModule {}

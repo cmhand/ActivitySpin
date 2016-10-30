@@ -3,5 +3,6 @@ export const DB = {
     pantry: "pantry",
     currentActivity: "currentActivity",
     completedActivities: "completedActivities",
-    filters: "filters"
+    filters: "filters",
+    loaded: "loaded"
 }

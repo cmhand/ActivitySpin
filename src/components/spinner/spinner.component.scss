@@ -27,27 +27,19 @@ activities-spinner {
 	}
 
 	.circle {
+		width: 240px;
+		height: 240px;
 		position: relative;
+		border-radius: 200px;
+		box-shadow: 0px 0px 20px -5px;
 		margin: 1em auto;
-		border: solid 1em white;
-		width: 16em; height: 16em;
-		border-radius: 50%;
-		box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.5);
-		background: linear-gradient(45deg, darken(#005aff, 10%) 50%, transparent 42.34%),
-			linear-gradient(-45deg, #5ef500, 50%, transparent 42.34%) 100% 0,
-			linear-gradient(-45deg, #00b31a 100.48%, transparent 75.48%) 100% 0, 
-			linear-gradient(45deg, transparent 50%, #ffbd02 37.66%) 100% 100%,
-			linear-gradient(-45deg, transparent 50%, #662a6c 37.66%) 0 100%,
-			linear-gradient(-45deg, transparent 0%, darken(#ff00d9, 10%) 0%) 0 100%, 
-			#00ffe5 linear-gradient(#ff001a, #ff001a) 100% 100%;
-		background-repeat: no-repeat;
-		background-size: 50% 50%;
 		transition: 1.5s ease-out;
+		box-sizing: content-box;
 	}
 
 	.btn {
 		position: relative;
-		width: 8em;
+		width: 75%;
 		background-color: rgba(229,5,5,1);
 		color: #fff;
 		padding: 1.2em 0;
