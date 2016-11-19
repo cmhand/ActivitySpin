@@ -86,7 +86,7 @@ export class SpinnerComponent implements AfterViewInit {
 		if(this.isStopped){
 			if(!this.lock){
 			  this.lock = true;
-			  this.slowDownRand = this.rand(0.960, 0.998);
+			  this.slowDownRand = this.rand(0.950, 0.998);
 			} 
 			this.speed = this.speed > 0.4 ? this.speed *= this.slowDownRand : 0;
 		}
